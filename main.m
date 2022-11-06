@@ -16,4 +16,12 @@ clc;       % Clear command window
 clear;     % Clear memory
 
 audio_files = arrayfun(@(x) string(x.name), dir("Assets/*.wav")).';
-sampling_rate = preprocess_audio_files(audio_files, "Dist");
+% sampling_rate = preprocess_audio_files(audio_files, "Dist");
+[x,Fs] = audioread("Dist/Birds.wav");
+%figure
+%y=moving_av(x,5);
+%figure
+%y=gaussian_av(x,5);
+%figure
+%y=median_av(x,5);
+audio_noise(x)

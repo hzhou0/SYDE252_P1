@@ -48,7 +48,7 @@ function sampling_rate = preprocess_audio_files(file_names, out)
     
         %Plot resampled audio file
         plot(x_new,y_new)
-    
+
         %Add chart elements
         legend('Original Waveform','Waveform Resampled at 16 kHz');
         title(append('Sound waveform graph for: ', file_name));
