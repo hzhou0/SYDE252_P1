@@ -17,11 +17,24 @@ clear;     % Clear memory
 
 audio_files = arrayfun(@(x) string(x.name), dir("Assets/*.wav")).';
 % sampling_rate = preprocess_audio_files(audio_files, "Dist");
+%% Compute signal charateristics
 [x,Fs] = audioread("Dist/Birds.wav");
+T=1/Fs;
+L=numel(x);
+t=(0: L-1)*T;
+%% Filters
+step=50;
+err=1:200;
+for c = 1:numel(err)
+   y=gaussian_av(x, t, c*step);
+   [e]=filter_error(y, t, Fs);
+   err(c)=e;
+end
+figure
+plot(linspace(1, numel(err)*step,numel(err)), err);
 %figure
-%y=moving_av(x,5);
-%figure
-%y=gaussian_av(x,5);
+%y=gaussian_av(x,10);
 %figure
 %y=median_av(x,5);
-audio_noise(x)
+%[~, sig_fdom]=filter_error(x);
+%plot((1:numel(sig_fdom)),sig_fdom)
