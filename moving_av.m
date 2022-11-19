@@ -1,16 +1,13 @@
-function y = moving_av(x, window)
-    b = (1/window)*ones(1,window);
-    a = 1;
-    y = normalize(filter(b,a,x), x);
-end
+function y = moving_av(x, window_size)
+     
+    %Create a vector for the window size (numerator)
+    b = (1/window_size)*ones(1,window_size);
 
-function [] = graph_moving_av(x, y, t)
-    plot(t,x)
-    hold on
-    plot(t,y)
-    title('Moving Average Filter')
-    xlabel('t (seconds)')
-    ylabel('amplitude')
-    legend('Input Data','Filtered Data')
+    %Denominator
+    a = 1;
+
+    %Applying moving average filter by a ratio of b/a and sliding across x
+    y = filter(b,a,x);
+
 end
 

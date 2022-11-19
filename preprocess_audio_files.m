@@ -22,9 +22,11 @@ function sampling_rate = preprocess_audio_files(file_names, out)
             y = y(:, 1) + y(:, 2);
         end
         
+        %Plot figures
         fig=figure();
         fig.UserData=struct("audio", y, "Fs", Fs);
-
+        
+        %Adding a play sound button
         c = uicontrol;
         c.String = 'Play';
         c.Callback = @callback; %Play the audio file
