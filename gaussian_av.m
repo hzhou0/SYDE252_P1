@@ -1,12 +1,6 @@
 function y = gaussian_av(x, window_size)
-
-    b=gausswin(window_size*2);
-
-    b=b(window_size:end);
-
-    num = (1/window_size)*b;
-
+    b=gausswin(window_size);
+    num = b/sum(b);
     denom = 1;
-    
     y = normalize(filter(num,denom,x), x);
 end
