@@ -21,7 +21,7 @@ function [noise, drift, P1] = filter_error(filtered, original)
     noise=sum(P1(P1<threshold))/sum(P1(P1>=threshold));
 
     % Define drift as the root mean square difference between the original
-    % and filtered signal
+    % and filtered signal in the frequency domain
     z=fft(original);
     drift=sum(abs(y-z));
 end
