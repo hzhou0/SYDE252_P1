@@ -16,24 +16,15 @@ clc;       % Clear command window
 clear;     % Clear memory
 
 audio_files = arrayfun(@(x) string(x.name), dir("Assets/*.wav")).';
-%sampling_rate = preprocess_audio_files(audio_files, "Dist");
-% [x, Fs]=audioread("Dist/Drum.wav");
-% figure
-% plot(gaussian_av(x, 1));
-% figure
-% plot(gaussian_av(x, 10));
-% figure
-% plot(gaussian_av(x, 100));
-% sum(abs(x-gaussian_av(x, 2)))
-% sum(abs(x-gaussian_av(x, 5)))
-% sum(abs(x-gaussian_av(x, 10)))
-% sum(abs(x-gaussian_av(x, 100)))
+sampling_rate = preprocess_audio_files(audio_files, "Dist");
+
+
 %%########################################################################
-% Gaussian Filter
+% Filter Error
 %%########################################################################
-error_plot(@gaussian_av, "Gaussian", 100);
-%error_plot(@median_av, "Median");
-error_plot(@moving_av, "Moving", 100);
+%error_plot(@gaussian_av, "Gaussian", 100);
+%error_plot(@median_av, "Median", 100);
+%error_plot(@moving_av, "Moving", 100);
 
 
 function []=error_plot(filter_function, function_name, max_window_size)
@@ -64,3 +55,5 @@ function []=error_plot(filter_function, function_name, max_window_size)
     ylabel('Relative value')
     xlabel('Window size')
 end
+
+

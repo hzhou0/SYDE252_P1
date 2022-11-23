@@ -19,34 +19,28 @@ function BPM = beats_per_minute_detection()
    
     L = info.TotalSamples; %Length of the audio clip
     Y = fft(X); %Fast fourier transform to convert to frequency domain
-
-    P2 = abs(Y/L);
-    P1 = P2(1:L/2+1);
-    P1(2:end-1) = 2*P1(2:end-1);
-
-    f = Fs*(0:(L/2))/L;
     
-    
-    %plot(f,P1) ;
-    title("Drums Signal Highpassed at 12 kHz")
-    xlabel("Sample Number");
-    ylabel("Audio Data Amplitude");
-    
-
-    % Highpass above 12 kHz, experimentally found to be the best
-    y_2 = highpass(Y,12000,Fs);
-    p2 = abs(y_2/L);
-    p1 = p2(1:L/2+1);
-
-    hold on
-    %plot (f,p1);
-
+    % Highpass above 8 kHz, experimentally found to be the best
+    y_2 = highpass(Y,7000,Fs);
+ 
     %Inverse FFT to return to discrete-time domain
     Y_2 = ifft(y_2);
 
+    %Abosulte value of the signal gives the amplitudes from ifft
+    abs_Y_2 = abs(Y_2);
 
-    sound(abs(Y_2),Fs)
+    sound(abs_Y_2,Fs);
+
+    %Determining which instrument signal peaks correspond to
+    %sound(abs_Y_2(20000:35000),Fs); %High-pitch cymbal sample
+    %sound(abs_Y_2(40000:52000),Fs); %Edge hit sample
+
+    %Plot the highpassed waveform
+    figure
     plot(abs(Y_2))
+    title("Drums Signal Highpassed at 8 kHz")
+    xlabel("Sample Number");
+    ylabel("Audio Data Amplitude");
 
 end
 

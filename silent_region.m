@@ -33,12 +33,6 @@ function silentRegion = silent_region()
     %variable to count silent regions
     countSilentRegions = 0;
 
-%     for n = 1:numel(x_mov_avg)-1
-%         if(signal_compare(n) == 1 && signal_compare(n+1) == 0)
-%             countSilentRegions = countSilentRegions + 1;
-%         end
-%     end
-        
     lowerBound = 0; %lower bound of a silent region
     upperBound = 0; %upper bound of a silent region
     for n = 1:numel(x_mov_avg)-1

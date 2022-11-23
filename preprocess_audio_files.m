@@ -1,5 +1,5 @@
 %%########################################################################
-% load_audio_file.m
+% preprocess_audio_file.m
 % 
 % SYDE 252 - Project #1: Audio Processing in Time Domain
 % November 2, 2022
@@ -10,8 +10,6 @@ function sampling_rate = preprocess_audio_files(file_names, out)
     for file_name = file_names
         %Read in audio file. y is audio data, Fs is sampling rate
         [y,Fs] = audioread(file_name);
-        
-        %Read audio file info
         info = audioinfo(file_name);
         
         %Extract the sampling rate for the original file
