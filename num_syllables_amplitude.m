@@ -34,6 +34,7 @@ function syllables = num_of_syllables_amplitude()
     end
     
     
+    
     %Temp variabes used for counting if the amplitudes constitute a signal
     num_syllables = 0; %Number of syllables determines
     consecutive_count = 0; %Number of consecutive peaks above threshhold
@@ -41,7 +42,7 @@ function syllables = num_of_syllables_amplitude()
 
     %Iterate through each peak and determine the number of syllables
     for k = 1:numel(pks)
-       
+        
         if(syllable_signal(k) == syllable_detected_amplitude)
             consecutive_count = consecutive_count + 1;
         else
@@ -58,13 +59,13 @@ function syllables = num_of_syllables_amplitude()
 
     hold on;
   
+    %Plot the syllable detection overalyed
     plot(abs(y_gauss_av))
     yline(threshold,Label="Threshold",color='red')
-    %plot(locs,pks,'o')
     plot(locs,syllable_signal)
-    %plot(x)
+    
 
-    title("Speech.wav Syllable Detection with Threshold")
+    title("Speech.wav Number of Syllables Detection")
     xlabel("Sample Number");
     ylabel("Audio Data Amplitude");
     legend("Filtered Signal", "Signal Above Threshold")
