@@ -4,10 +4,10 @@ function syllables = num_of_syllables_amplitude()
     clc; close;
 
     %Load the speech audio file     
-    [x,Fs] = audioread("Dist/Speech.wav");
+    [x,Fs] = audioread("Preprocessed Audio Files/Speech.wav");
 
     %Read the wave file information
-    info = audioinfo("Dist/Speech.wav")
+    info = audioinfo("Preprocessed Audio Files/Speech.wav")
    
     %Take a gaussian average filter to reduce noise variation 
     y_gauss_av = gaussian_av(abs(x),14);

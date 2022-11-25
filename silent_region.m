@@ -3,10 +3,10 @@ function silentRegion = silent_region()
     clc; close;
 
     %Load the speech audio file     
-    [x,Fs] = audioread("Dist/Birds.wav");
+    [x,Fs] = audioread("Preprocessed Audio Files/Birds.wav");
 
     %Read the wave file information
-    info = audioinfo("Dist/Birds.wav")
+    info = audioinfo("Preprocessed Audio Files/Birds.wav")
     
     %filter out the noise, passing absolute value so that we only have to
     %deal with positive amplitude or 0 amplitude

@@ -16,23 +16,31 @@ clc;       % Clear command window
 clear;     % Clear memory
 
 audio_files = arrayfun(@(x) string(x.name), dir("Assets/*.wav")).';
-sampling_rate = preprocess_audio_files(audio_files, "Dist");
+addpath("Assets/");
+sampling_rate = preprocess_audio_files(audio_files, "Preprocessed Audio Files");
 
 
 %%########################################################################
-% Filter Error
+% Error plots
 %%########################################################################
-%error_plot(@gaussian_av, "Gaussian", 100);
-%error_plot(@median_av, "Median", 100);
-%error_plot(@moving_av, "Moving", 100);
+error_plot(@gaussian_av, "Gaussian", 100);
+error_plot(@median_av, "Median", 100);
+error_plot(@moving_av, "Moving", 100);
 
+%%########################################################################
+% Audio Processing - Part 3
+%%########################################################################
+
+silent_region()
+syllables = num_syllables_amplitude()
+beats_per_minute_detection()
 
 function []=error_plot(filter_function, function_name, max_window_size)
     figure
     hold on;
     colors=['r' 'g' 'b'];
     i=1;
-    for file_path = ["Dist/Drum.wav", "Dist/Birds.wav", "Dist/Speech.wav"]
+    for file_path = ["Preprocessed Audio Files/Drum.wav", "Preprocessed Audio Files/Birds.wav", "Preprocessed Audio Files/Speech.wav"]
         % Compute signal charateristics
         [x] = audioread(file_path);
         % Tune filter parameters

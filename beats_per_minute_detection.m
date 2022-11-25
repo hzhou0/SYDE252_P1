@@ -12,10 +12,10 @@ function BPM = beats_per_minute_detection()
     clc; close;
 
     %Load the speech audio file
-    [X,Fs] = audioread("Dist/Drum.wav");
+    [X,Fs] = audioread("Preprocessed Audio Files/Drum.wav");
 
     %Read the wave file information
-    info = audioinfo("Dist/Drum.wav")
+    info = audioinfo("Preprocessed Audio Files/Drum.wav")
    
     L = info.TotalSamples; %Length of the audio clip
     Y = fft(X); %Fast fourier transform to convert to frequency domain
